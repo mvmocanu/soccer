@@ -23,9 +23,9 @@ class Team:
     def team_power(self) -> Player:
         return sum({p.soccer_power for p in self.players})
 
-    @staticmethod
+    @classmethod
     def build_team(
-        players: list[Player], num_defenders: int, num_attackers: int
+        cls, players: list[Player], num_defenders: int, num_attackers: int
     ):
         if (num_defenders + num_attackers + 1) != len(players):
             raise ValueError(
@@ -64,7 +64,7 @@ class Team:
             attackers = sorted(
                 players, key=lambda player: (player.height, player.weight)
             )[:num_attackers]
-        return Team(
+        return cls(
             players=all_players,
             goalie=goalie,
             defenders=defenders,

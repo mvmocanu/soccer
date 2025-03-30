@@ -16,3 +16,7 @@ class Match:
             get_highlight(*random.sample([self.home_team, self.away_team], 2))
             for _ in range(20)
         ]
+
+    @classmethod
+    def play(cls, home_team, away_team):
+        return cls(home_team, away_team)

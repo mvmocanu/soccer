@@ -68,5 +68,7 @@ class MatchView(APIView):
 
         # Return the data as a JsonResponse
         return Response(
-            MatchSerializer(Match(home_team=poke_team, away_team=sw_team)).data
+            MatchSerializer(
+                Match.play(home_team=poke_team, away_team=sw_team)
+            ).data
         )
