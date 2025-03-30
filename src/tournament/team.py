@@ -20,7 +20,7 @@ class Team:
         return random.choice(self.defenders)
 
     @property
-    def team_power(self) -> Player:
+    def team_power(self) -> int:
         return sum({p.soccer_power for p in self.players})
 
     @classmethod
