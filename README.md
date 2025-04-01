@@ -43,6 +43,8 @@ docker compose up --build
 docker compose exec django-web bash
 cd src
 python manage.py collectstatic
+python manage.py migrate
+python manage.py createcachetable
 ```
 
 ### Running the project
