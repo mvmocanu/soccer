@@ -1,4 +1,4 @@
-# Super Soccer Showdown
+# The challenge 
 
 The Star Wars and Pokemon universes have collided and a big soccer tournament is being planned to
 settle which universe is best.
@@ -43,6 +43,8 @@ docker compose up --build
 docker compose exec django-web bash
 cd src
 python manage.py collectstatic
+python manage.py migrate
+python manage.py createcachetable
 ```
 
 ### Running the project
