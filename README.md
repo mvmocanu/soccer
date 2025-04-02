@@ -119,3 +119,9 @@ match = Match.play(home_team=poke_team, away_team=sw_team)
 ```
 
 On the `match` object, the `highlights` of the match can be found.
+
+## Things to improve
+
+The primary performance bottleneck of the application is the reliance on external requests to the Star Wars and Pokémon APIs. To speed up team generation, one effective approach is to fetch the necessary data asynchronously. This can be achieved in various ways, such as implementing a management command that runs as a scheduled cron job. The command can periodically retrieve data, check for updates in the APIs, and update the local dataset accordingly.
+
+If we store this data in a local database, adopting a master/slave architecture can significantly improve efficiency. By directing all read queries to a slave instance, we can reduce the load on the primary database while maintaining performance. Additionally, as the application scales and gains more users, implementing a caching layer on top of the database can further optimize response times and ensure a seamless user experience.
