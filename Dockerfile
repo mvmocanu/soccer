@@ -56,6 +56,9 @@ ENV PATH="/app/src:$PATH"
 # Expose the application port
 EXPOSE 8000 
 
+# install the project
+RUN pip install -e .
+
 # collectstatic
 RUN cd src && python manage.py collectstatic --noinput || true
  

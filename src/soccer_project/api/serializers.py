@@ -14,6 +14,6 @@ class TeamSerializer(serializers.Serializer):
 
 
 class MatchSerializer(serializers.Serializer):
+    highlights = serializers.ListField(child=serializers.CharField())
     home_team = TeamSerializer()
     away_team = TeamSerializer()
-    highlights = serializers.ListField(child=serializers.CharField())

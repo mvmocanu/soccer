@@ -1,7 +1,7 @@
 import random
 
-from tournament.api_client import APIClient
-from tournament.players import PokePlayer
+from soccer_project.tournament.api_client import APIClient
+from soccer_project.tournament.players import PokePlayer
 
 from .base import BaseClient
 

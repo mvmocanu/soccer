@@ -13,10 +13,16 @@ def api_client():
 def test_match_view_success(api_client, mocker):
     """Test successful retrieval of match data"""
     with (
-        patch("tournament.clients.pokemon.PokemonClient") as mock_poke_client,
-        patch("tournament.clients.star_wars.StarWarsClient") as mock_sw_client,
-        patch("tournament.team.Team.build_team") as mock_build_team,
-        patch("api.views.MatchSerializer") as mock_serializer,
+        patch(
+            "soccer_project.tournament.clients.pokemon.PokemonClient"
+        ) as mock_poke_client,
+        patch(
+            "soccer_project.tournament.clients.star_wars.StarWarsClient"
+        ) as mock_sw_client,
+        patch(
+            "soccer_project.tournament.team.Team.build_team"
+        ) as mock_build_team,
+        patch("soccer_project.api.views.MatchSerializer") as mock_serializer,
     ):
         # Setup mock clients and team building logic
         mock_poke_client.return_value.fetch_players.return_value = ["poke"]
@@ -36,10 +42,16 @@ def test_match_view_success(api_client, mocker):
 def test_match_view_missing_parameters(api_client):
     """Test that default values are used when parameters are missing"""
     with (
-        patch("tournament.clients.pokemon.PokemonClient") as mock_poke_client,
-        patch("tournament.clients.star_wars.StarWarsClient") as mock_sw_client,
-        patch("tournament.team.Team.build_team") as mock_build_team,
-        patch("api.views.MatchSerializer") as mock_serializer,
+        patch(
+            "soccer_project.tournament.clients.pokemon.PokemonClient"
+        ) as mock_poke_client,
+        patch(
+            "soccer_project.tournament.clients.star_wars.StarWarsClient"
+        ) as mock_sw_client,
+        patch(
+            "soccer_project.tournament.team.Team.build_team"
+        ) as mock_build_team,
+        patch("soccer_project.api.views.MatchSerializer") as mock_serializer,
     ):
         mock_poke_client.return_value.fetch_players.return_value = ["poke"]
         mock_sw_client.return_value.fetch_players.return_value = ["star wars"]
@@ -72,8 +84,12 @@ def test_match_view_invalid_parameters(api_client):
 def test_match_view_client_fetch_error(api_client):
     """Test that errors in client fetching (e.g., API failure) return a 400 status"""
     with (
-        patch("tournament.clients.pokemon.PokemonClient") as mock_poke_client,
-        patch("tournament.clients.star_wars.StarWarsClient") as mock_sw_client,
+        patch(
+            "soccer_project.tournament.clients.pokemon.PokemonClient"
+        ) as mock_poke_client,
+        patch(
+            "soccer_project.tournament.clients.star_wars.StarWarsClient"
+        ) as mock_sw_client,
     ):
         # Simulate client fetching error (e.g., timeout, invalid response)
         mock_poke_client.return_value.fetch_players.side_effect = Exception(
@@ -92,9 +108,15 @@ def test_match_view_client_fetch_error(api_client):
 def test_match_view_team_build_error(api_client):
     """Test that errors in building teams return a 400 status"""
     with (
-        patch("tournament.clients.pokemon.PokemonClient") as mock_poke_client,
-        patch("tournament.clients.star_wars.StarWarsClient") as mock_sw_client,
-        patch("tournament.team.Team.build_team") as mock_build_team,
+        patch(
+            "soccer_project.tournament.clients.pokemon.PokemonClient"
+        ) as mock_poke_client,
+        patch(
+            "soccer_project.tournament.clients.star_wars.StarWarsClient"
+        ) as mock_sw_client,
+        patch(
+            "soccer_project.tournament.team.Team.build_team"
+        ) as mock_build_team,
     ):
         mock_poke_client.return_value.fetch_players.return_value = ["poke"]
         mock_sw_client.return_value.fetch_players.return_value = ["star wars"]

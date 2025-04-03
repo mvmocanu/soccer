@@ -1,7 +1,7 @@
 import pytest
 
-from tournament.players import Player
-from tournament.team import Team
+from soccer_project.tournament.players import Player
+from soccer_project.tournament.team import Team
 
 
 @pytest.fixture

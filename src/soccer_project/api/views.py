@@ -4,10 +4,10 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
 
-from tournament.clients.pokemon import PokemonClient
-from tournament.clients.star_wars import StarWarsClient
-from tournament.match import Match
-from tournament.team import Team
+from soccer_project.tournament.clients.pokemon import PokemonClient
+from soccer_project.tournament.clients.star_wars import StarWarsClient
+from soccer_project.tournament.match import Match
+from soccer_project.tournament.team import Team
 
 from .serializers import MatchSerializer
 
