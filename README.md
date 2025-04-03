@@ -1,4 +1,4 @@
-# The challenge 
+# The challenge
 
 The Star Wars and Pokemon universes have collided and a big soccer tournament is being planned to
 settle which universe is best.
@@ -75,7 +75,7 @@ For generating the teams, there is a `tournament` library within the project tha
 The following snippet of code can be used to fetch a specified number of players from Pokemon API
 
 ```
-from tournament.clients.pokemon import PokemonClient
+from soccer_project.tournament.clients.pokemon import PokemonClient
 poke_client = PokemonClient(num_players=5)
 players = poke_client.fetch_players()
 ```
@@ -85,7 +85,7 @@ players = poke_client.fetch_players()
 The following snippet of code can be used to fetch a specified number of players from StarWars API
 
 ```
-from tournament.clients.star_wars import StarWarsClient
+from soccer_project.tournament.clients.star_wars import StarWarsClient
 sw_client = StarWarsClient(num_players)
 sw_players = sw_client.fetch_players()
 
@@ -96,7 +96,7 @@ sw_players = sw_client.fetch_players()
 Once we have players, we can build a team.
 
 ```
-from tournament.team import Team
+from soccer_project.tournament.team import Team
 team = Team.build_team(players, num_attackers=2, num_defenders=2)
 
 ```
@@ -115,7 +115,7 @@ On the `team` object multiple properties about that team are available:
 If we have more teams, a match can be played between two teams.
 
 ```
-from tournament.match import Match
+from soccer_project.tournament.match import Match
 match = Match.play(home_team=poke_team, away_team=sw_team)
 ```
 
