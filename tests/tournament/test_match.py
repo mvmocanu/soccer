@@ -1,4 +1,4 @@
-from tournament.match import Match
+from soccer_project.tournament.match import Match
 
 
 def test_match_highlights_length(team):

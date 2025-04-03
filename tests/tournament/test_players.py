@@ -1,5 +1,5 @@
-from tournament.players import Player
-from tournament.players import PokePlayer
+from soccer_project.tournament.players import Player
+from soccer_project.tournament.players import PokePlayer
 
 
 def test_player_initialization():

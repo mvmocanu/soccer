@@ -2,7 +2,7 @@ import pytest
 import requests
 from django.core.cache import cache
 
-from tournament.api_client import APIClient
+from soccer_project.tournament.api_client import APIClient
 
 
 @pytest.fixture
@@ -78,7 +78,9 @@ def test_session_closes(mocker, api_client):
 
 def test_context_manager(mocker):
     """Test that APIClient properly closes the session when used with 'with'."""
-    mock_close = mocker.patch("tournament.api_client.APIClient.close")
+    mock_close = mocker.patch(
+        "soccer_project.tournament.api_client.APIClient.close"
+    )
 
     with APIClient(base_url="https://api.example.com") as client:
         assert isinstance(client, APIClient)

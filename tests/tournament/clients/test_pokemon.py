@@ -2,13 +2,15 @@ import random
 
 import pytest
 
-from tournament.clients.pokemon import PokemonClient
-from tournament.players import PokePlayer
+from soccer_project.tournament.clients.pokemon import PokemonClient
+from soccer_project.tournament.players import PokePlayer
 
 
 @pytest.fixture
 def mock_api_client(mocker):
-    mock_client = mocker.patch("tournament.clients.pokemon.APIClient")
+    mock_client = mocker.patch(
+        "soccer_project.tournament.clients.pokemon.APIClient"
+    )
     instance = mock_client.return_value
     instance.get.side_effect = lambda url: (
         {"results": [{"name": f"pokemon{i}"} for i in range(1, 1303)]}

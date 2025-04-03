@@ -1,4 +1,4 @@
-from tournament.highlights import get_highlight
+from soccer_project.tournament.highlights import get_highlight
 
 
 def test_get_highlight_returns_non_empty_string(team):

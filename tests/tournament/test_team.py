@@ -1,18 +1,21 @@
 import pytest
 
-from tournament.players import Player
-from tournament.team import Team
+from soccer_project.tournament.players import Player
+from soccer_project.tournament.team import Team
 
 
 @pytest.fixture
 def sample_players():
     """Provides a list of sample Player instances."""
     return [
-        Player(name="p1", height=180, weight=75, soccer_power=50),
-        Player(name="p2", height=175, weight=80, soccer_power=60),
-        Player(name="p3", height=190, weight=85, soccer_power=70),
-        Player(name="p4", height=170, weight=65, soccer_power=40),
-        Player(name="p5", height=185, weight=90, soccer_power=55),
+        # goalie
+        Player(name="p1", height=190, weight=85, soccer_power=70),
+        # attackers
+        Player(name="p2", height=180, weight=75, soccer_power=50),
+        Player(name="p3", height=170, weight=65, soccer_power=40),
+        # defenders
+        Player(name="p4", height=185, weight=90, soccer_power=55),
+        Player(name="p5", height=175, weight=80, soccer_power=60),
     ]
 
 
@@ -23,11 +26,11 @@ def test_build_team_correctly(sample_players):
     assert len(team.defenders) == 2
     assert len(team.attackers) == 2
     assert isinstance(team.goalie, Player)  # Check goalie assignment
-    assert team.goalie.name == "p3"
+    assert team.goalie.name == "p1"
     assert team.goalie not in team.defenders
     assert team.goalie not in team.attackers
-    assert {"p1", "p4"} == {p.name for p in team.attackers}
-    assert {"p2", "p5"} == {p.name for p in team.defenders}
+    assert {"p2", "p3"} == {p.name for p in team.attackers}
+    assert {"p4", "p5"} == {p.name for p in team.defenders}
     assert not {p.name for p in team.attackers}.intersection(
         {p.name for p in team.defenders}
     )
@@ -36,11 +39,33 @@ def test_build_team_correctly(sample_players):
 def test_build_team_correctly_with_different_attackers_and_defenders(
     sample_players,
 ):
-    team = Team.build_team(sample_players, num_defenders=3, num_attackers=1)
-
+    players = [
+        Player(name="p1", height=190, weight=85),
+        Player(name="p2", height=170, weight=75),
+        Player(name="attacker", height=170, weight=65),
+        Player(name="p4", height=180, weight=60),
+        Player(name="p5", height=175, weight=80),
+    ]
+    team = Team.build_team(players, num_defenders=3, num_attackers=1)
     assert len(team.players) == 5
     assert len(team.defenders) == 3
     assert len(team.attackers) == 1
+    # assert {"attacker"} == {p.name for p in team.attackers}
+    # assert {"p2", "p4", "p5"} == {p.name for p in team.defenders}
+
+    players = [
+        Player(name="p1", height=190, weight=85),
+        Player(name="p2", height=170, weight=75),
+        Player(name="p3", height=170, weight=65),
+        Player(name="defender", height=180, weight=80),
+        Player(name="p5", height=175, weight=80),
+    ]
+    team = Team.build_team(players, num_defenders=1, num_attackers=3)
+    assert len(team.players) == 5
+    assert len(team.defenders) == 1
+    assert len(team.attackers) == 3
+    assert {"p2", "p3", "p5"} == {p.name for p in team.attackers}
+    assert {"defender"} == {p.name for p in team.defenders}
 
 
 def test_build_team_invalid_numbers(sample_players):

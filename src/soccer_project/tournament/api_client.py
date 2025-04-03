@@ -15,10 +15,10 @@ class APIClient:
         url = f"{self.base_url}{endpoint}"
         cache_value = cache.get(url)
         if cache_value:
-            logger.debug("Fetching %s from cache.", url)
+            logger.debug("Fetching from cache: %s .", url)
             return cache_value
         response = self.session.get(url, params=params)
-        logger.debug("Fetching %s from the web.", url)
+        logger.debug("Fetching from the web: %s .", url)
         response.raise_for_status()
         response = response.json()
         cache.set(url, response)

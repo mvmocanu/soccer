@@ -2,13 +2,15 @@ import random
 
 import pytest
 
-from tournament.clients.star_wars import StarWarsClient
-from tournament.players import StarWarsPlayer
+from soccer_project.tournament.clients.star_wars import StarWarsClient
+from soccer_project.tournament.players import StarWarsPlayer
 
 
 @pytest.fixture
 def mock_api_client(mocker):
-    mock_client = mocker.patch("tournament.clients.star_wars.APIClient")
+    mock_client = mocker.patch(
+        "soccer_project.tournament.clients.star_wars.APIClient"
+    )
     instance = mock_client.return_value
     # Mock response for a valid person
     instance.get.side_effect = (
